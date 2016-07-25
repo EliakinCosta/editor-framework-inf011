@@ -4,6 +4,7 @@
 #include <../EditorFrameworkInterfaces/iplugin.h>
 #include <../EditorFrameworkInterfaces/iplugincontroller.h>
 #include <../EditorFrameworkInterfaces/ieditor.h>
+#include <../EditorFrameworkInterfaces/idocument.h>
 #include "documentcontroller.h"
 #include <QDebug>
 #include <QString>
@@ -60,19 +61,33 @@ bool UiController::addAction(const QString &menuName, const QString &text, const
 }
 
 void UiController::actionOpen(){
-    QString fileName = QFileDialog::getOpenFileName(m_mainWindow, tr("Open Image"), QDir::currentPath(), tr("All Files (*.*)"));
-    QString fileExtension = fileName.split(".")[1];
+    QFileDialog *fileDialog = new QFileDialog(m_mainWindow);
 
-    IPluginController* pluginController = m_core->pluginController();
-    foreach(IPlugin *plugin, *pluginController->loadedPlugins())
+    if (fileDialog->exec())
     {
-        IAbstractFactory* factory = dynamic_cast<IAbstractFactory*>(plugin);
-        if(factory && factory->createSupportedExtensions().contains(fileExtension))
+        QString selectedFile = fileDialog->selectedFiles().at(0);
+        qDebug()<<"nome arquivo: "<<selectedFile;
+        QString fileExtension = "*."+selectedFile.split(".").at(1);
+        qDebug()<<"extensao: "<<fileExtension;
+        IPluginController* pluginController = m_core->pluginController();
+        pluginController->loadPlugins();
+        foreach(IPlugin *plugin, *pluginController->loadedPlugins())
         {
-              IEditor* editor =  factory->createEditor();
-              IDocument* document = factory->createDocument();
-              editor->setDocument(document);
-              setEditor(editor);
+            IAbstractFactory* factory = dynamic_cast<IAbstractFactory*>(plugin);
+            if(factory && factory->createSupportedExtensions().contains(fileExtension))
+            {
+                qDebug()<<"Plugin carregado!!"<<factory;
+                IEditor* editor =  factory->createEditor();
+                IDocument* document = factory->createDocument();
+                document->open(selectedFile);
+                editor->setDocument(document);
+                setEditor(editor);
+                break;
+            }
+            else
+            {
+                qDebug()<<"Plugin nao carregado!!"<<factory;
+            }
         }
     }
 }

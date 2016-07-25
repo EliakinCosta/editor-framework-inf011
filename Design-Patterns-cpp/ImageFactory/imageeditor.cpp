@@ -9,11 +9,9 @@
 #include <QGraphicsScene>
 
 QWidget* ImageEditor::view() const{
-    QPixmap image = QPixmap::fromImage(*dynamic_cast<ImageDocument *>(this->m_document)->image());
-    QGraphicsScene* scene = new QGraphicsScene;
-    scene->addPixmap(image);
-
-    QGraphicsView* view = new QGraphicsView(scene);
-
-    return view;
+    QLabel *imageLabel = new QLabel;;
+    QScrollArea *scrollArea = new QScrollArea;
+    imageLabel->setPixmap(*dynamic_cast<ImageDocument *>(this->m_document)->image());
+    scrollArea->setWidget(imageLabel);
+    return scrollArea;
 }

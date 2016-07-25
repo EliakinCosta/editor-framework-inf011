@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QPluginLoader>
 #include <QApplication>
+#include <QDebug>
 
 PluginController::PluginController(ICore* core):m_loadedPlugins(new QList<IPlugin*>),
                                      m_core(core)
@@ -22,7 +23,7 @@ bool PluginController::loadPlugins()
 {
     bool flagLoadSucess = true;
     QDir pluginsDir = QDir(qApp->applicationDirPath());
-
+    pluginsDir.cdUp();
     #if defined(Q_OS_WIN)
         if (pluginsDir.dirName().toLower() == "debug" || pluginsDir.dirName().toLower() == "release")
             pluginsDir.cdUp();
@@ -34,13 +35,14 @@ bool PluginController::loadPlugins()
         }
     #endif
     pluginsDir.cd("plugins");
-
+    qDebug() << "diretorio plugins: " << pluginsDir.path();
     IPlugin* plugin = 0;
 
     foreach (QString pluginFileName, pluginsDir.entryList(QDir::Files))
        {
            QPluginLoader loader(pluginsDir.absoluteFilePath(pluginFileName));
            plugin = dynamic_cast<IPlugin *>(loader.instance());
+           qDebug() << pluginFileName;
            if (plugin)
            {
                plugin->initialize(m_core);

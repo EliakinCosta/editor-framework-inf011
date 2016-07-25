@@ -1,7 +1,7 @@
 #include "imagedocument.h"
 #include <QPixmap>
 
-ImageDocument::ImageDocument()
+ImageDocument::ImageDocument():m_image(new QPixmap)
 {
 
 }
@@ -11,7 +11,7 @@ ImageDocument::~ImageDocument()
     delete m_image;
 }
 
-QImage* ImageDocument::image() const{
+QPixmap* ImageDocument::image() const{
     return m_image;
 }
 

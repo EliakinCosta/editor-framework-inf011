@@ -2,8 +2,7 @@
 #define IMAGEDOCUMENT_H
 
 #include <../EditorFrameworkInterfaces/idocument.h>
-
-class QImage;
+#include <QPixmap>
 
 class ImageDocument: public IDocument
 {
@@ -13,9 +12,9 @@ public:
     virtual bool open(QString fileName);
     virtual bool save();
     virtual bool close();
-    QImage* image() const;
+    QPixmap* image() const;
 private:
-    QImage* m_image;
+    QPixmap* m_image;
 
 };
 

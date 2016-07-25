@@ -1,28 +1,34 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2016-07-24T13:25:54
+# Project created by QtCreator 2016-07-25T11:49:56
 #
 #-------------------------------------------------
-
 QT       -=  gui
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = ImageFactory
+TARGET = TextFactory
 TEMPLATE = lib
 CONFIG += plugin
-DEFINES += IMAGEFACTORY_LIBRARY
 DESTDIR = ../plugins
+DEFINES += TEXTFACTORY_LIBRARY
 
-SOURCES += imagefactory.cpp \
-    imageeditor.cpp \
-    imagedocument.cpp
+SOURCES += textfactory.cpp \
+    texteditor.cpp \
+    textdocument.cpp
 
-HEADERS += imagefactory.h \
-    imageeditor.h \
-    imagedocument.h \
-    imagefactory_global.h
-DISTFILES += ImageFactory.json
+HEADERS += textfactory.h\
+        textfactory_global.h \
+    texteditor.h \
+    textdocument.h
+
+unix {
+    target.path = /usr/lib
+    INSTALLS += target
+}
+
+DISTFILES += TextFactory.json
 
 unix {
     target.path = /usr/lib
