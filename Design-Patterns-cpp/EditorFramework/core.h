@@ -10,13 +10,15 @@ class IPluginController;
 class Core : public ICore
 {
 public:
-    Core();
+    static Core* getInstance();
     virtual ~Core();
     virtual IUiController* uiController() const;
     virtual IDocumentController* documentController() const;
     virtual IPluginController* pluginController() const;
 
 private:
+    Core();
+    static Core* m_singleton;
     IUiController* m_uiController;
     IDocumentController* m_documentController;
     IPluginController* m_pluginController;

@@ -5,6 +5,6 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Core core;
+    Core *core = Core::getInstance();
     return a.exec();
 }
