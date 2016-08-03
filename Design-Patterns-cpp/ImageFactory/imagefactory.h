@@ -4,25 +4,27 @@
 #include "imagefactory_global.h"
 #include <../EditorFrameworkInterfaces/iabstractfactory.h>
 #include <../EditorFrameworkInterfaces/iplugin.h>
+#include <../EditorFrameworkInterfaces/iprototype.h>
+#include <QMap>
+
+using namespace std;
 
 class IEditor;
 class IDocument;
 
 class IMAGEFACTORYSHARED_EXPORT ImageFactory : public IPlugin,
-                     public IAbstractFactory
+                                               public IAbstractFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qt-project.EditorFrameworkInterfaces.IAbstractFactory" FILE "ImageFactory.json")
     Q_INTERFACES(IAbstractFactory)
-
-
 public:
     ImageFactory(QObject *parent = 0);
     virtual ~ImageFactory();
     virtual bool initialize(ICore *core);
-    virtual IEditor* createEditor() const Q_DECL_OVERRIDE;
-    virtual IDocument* createDocument() const Q_DECL_OVERRIDE;
-    virtual QString createSupportedExtensions() const Q_DECL_OVERRIDE;
+    virtual IPrototype *create(QString namePrototype) const;
+private:
+    QMap<QString, IPrototype*> m_prototypes;
 };
 
 #endif // IMAGEFACTORY_H

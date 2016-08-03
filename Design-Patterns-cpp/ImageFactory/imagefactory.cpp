@@ -14,18 +14,17 @@ ImageFactory::~ImageFactory()
 {
 }
 
+
 bool ImageFactory::initialize(ICore *core){
+    m_prototypes.insert("Editor", new ImageEditor);
+    m_prototypes.insert("Document", new ImageDocument);
     return true;
 }
 
-IEditor* ImageFactory::createEditor() const{
-    return new ImageEditor;
-}
-
-IDocument* ImageFactory::createDocument() const{
-    return new ImageDocument;
-}
-
-QString ImageFactory::createSupportedExtensions() const{
-    return tr("Image Files (*.png *.jpg *.bmp)");
+IPrototype *ImageFactory::create(QString namePrototype) const
+{
+    if(m_prototypes.contains(namePrototype))
+    {
+        return m_prototypes[namePrototype]->clone();
+    }
 }

@@ -18,7 +18,9 @@ SOURCES += icore.cpp \
     idocumentcontroller.cpp \
     ieditor.cpp \
     idocument.cpp \
-    iabstractfactory.cpp
+    iabstractfactory.cpp \
+    iprototype.cpp \
+    icompressionalgorithm.cpp
 
 HEADERS += icore.h\
         editorframeworkinterfaces_global.h \
@@ -28,7 +30,9 @@ HEADERS += icore.h\
     idocumentcontroller.h \
     ieditor.h \
     idocument.h \
-    iabstractfactory.h
+    iabstractfactory.h \
+    iprototype.h \
+    icompressionalgorithm.h
 
 unix {
     target.path = /usr/lib
