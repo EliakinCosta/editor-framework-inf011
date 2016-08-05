@@ -5,6 +5,7 @@
 #include <../EditorFrameworkInterfaces/iprototype.h>
 #include <../EditorFrameworkInterfaces/icompressionalgorithm.h>
 #include <QPixmap>
+#include <QByteArray>
 
 class ImageDocument: public IDocument,
                      public IPrototype
@@ -18,11 +19,13 @@ public:
     virtual bool close();
     virtual bool compress();
     virtual bool uncompress();
-    virtual void setCompressionAlgorithm(ICompressionAlgorithm *compressionAlgorithm);
     QPixmap* image() const;
     virtual IPrototype *clone();
 private:
+    QString m_fileName;
     QPixmap* m_image;
+    QByteArray m_imageByteArray;
+    QString m_fileExtension;
 };
 
 #endif // IMAGEDOCUMENT_H

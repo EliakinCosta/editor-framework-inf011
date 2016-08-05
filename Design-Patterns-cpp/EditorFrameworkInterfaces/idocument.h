@@ -16,10 +16,9 @@ public:
     virtual bool close() = 0;
     virtual bool compress() = 0;
     virtual bool uncompress() = 0;
-protected:
-    virtual void setCompressionAlgorithm(ICompressionAlgorithm *compressionAlgorithm) = 0;
-private:
-    ICompressionAlgorithm compressionAlgorithm;
+public:
+    virtual void setCompressionAlgorithm(ICompressionAlgorithm *compressionAlgorithm);
+    ICompressionAlgorithm *m_compressionAlgorithm;
 };
 
 #endif // IDOCUMENT_H

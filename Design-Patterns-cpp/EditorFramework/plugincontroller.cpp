@@ -34,7 +34,7 @@ bool PluginController::loadPlugins()
             pluginsDir.cdUp();
         }
     #endif
-    pluginsDir.cd("plugins");
+    pluginsDir.cd("plugins/");
     qDebug() << "diretorio plugins: " << pluginsDir.path();
     IPlugin* plugin = 0;
 

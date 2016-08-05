@@ -6,6 +6,7 @@
 #include <../EditorFrameworkInterfaces/ieditor.h>
 #include <../EditorFrameworkInterfaces/idocument.h>
 #include <../EditorFrameworkInterfaces/iprototype.h>
+#include <../EditorFrameworkInterfaces/icompressionalgorithm.h>
 #include "documentcontroller.h"
 #include <QDebug>
 #include <QString>
@@ -72,24 +73,29 @@ void UiController::actionOpen(){
         qDebug()<<"extensao: "<<fileExtension;
         IPluginController* pluginController = m_core->pluginController();
         pluginController->loadPlugins();
+
+        IEditor *editorPrototype = 0;
+        IDocument *documentPrototype = 0;
+
         foreach(IPlugin *plugin, *pluginController->loadedPlugins())
         {
             IAbstractFactory* factory = dynamic_cast<IAbstractFactory*>(plugin);
             if(factory)
             {
                 qDebug()<<"Plugin carregado!!"<<factory;
-                IEditor *editorPrototype =  dynamic_cast<IEditor*>(factory->create(QString("Editor")));
-                IDocument *documentPrototype = dynamic_cast<IDocument*>(factory->create(QString("Document")));
+                editorPrototype =  dynamic_cast<IEditor*>(factory->create(QString("Editor")));
+                documentPrototype = dynamic_cast<IDocument*>(factory->create(QString("Document")));
                 qDebug()<<"antes do cast";
                 qDebug()<<editorPrototype;
+            }
+            ICompressionAlgorithm *compressAlgorithm = dynamic_cast<ICompressionAlgorithm*>(plugin);
+            if(compressAlgorithm && documentPrototype)
+            {
+                documentPrototype->setCompressionAlgorithm(compressAlgorithm);
                 documentPrototype->open(selectedFile);
+                documentPrototype->compress();
                 editorPrototype->setDocument(documentPrototype);
                 setEditor(editorPrototype);
-                break;
-            }
-            else
-            {
-                qDebug()<<"Plugin nao carregado!!"<<factory;
             }
         }
     }

@@ -10,7 +10,6 @@ public:
     IPrototype();
     virtual ~IPrototype(){}
     virtual IPrototype *clone() = 0;
-    virtual bool addPrototype(IPrototype *prototype) = 0;
 };
 
 Q_DECLARE_INTERFACE(IPrototype, "org.qt-project.EditorFrameworkInterfaces.IPrototype")
