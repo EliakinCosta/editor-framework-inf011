@@ -7,6 +7,7 @@
 #include "mainwindow.h"
 
 class QStringList;
+class QActionGroup;
 
 class UiController:public IUiController
 {
@@ -17,12 +18,17 @@ public:
     virtual QMenu* addMenu(const QString& title, const QString& parentMenuName);
     virtual bool addAction(const QString &menuName, const QString &text, const QObject *receiver, const char *member, const QKeySequence &shortcut = QKeySequence());
     virtual void setEditor(const IEditor *editor);
+    virtual void populateMenus(QObject *plugin, QMenu *menu);
 private:
     void initialize();
+    void addPluginToMenu(QObject *plugin, QMenu *menu, const char *member, QActionGroup *actionGroup);
+    void clearMenu(QMenu *menu);
     MainWindow* m_mainWindow;
     ICore* m_core;
+    QActionGroup *m_compressionAlgorithmGroup;
 private Q_SLOTS:
     void actionOpen();
+    void changeCompressionAlgorithm();
 };
 
 #endif // UICONTROLLER_H

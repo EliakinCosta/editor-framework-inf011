@@ -19,12 +19,8 @@ SOURCES += icore.cpp \
     ieditor.cpp \
     idocument.cpp \
     iabstractfactory.cpp \
-<<<<<<< HEAD
     iprototype.cpp \
     icompressionalgorithm.cpp
-=======
-    iprototype.cpp
->>>>>>> 6a42dc52edd8a45e028e1e0e99f251bd0576c65b
 
 HEADERS += icore.h\
         editorframeworkinterfaces_global.h \
@@ -35,12 +31,8 @@ HEADERS += icore.h\
     ieditor.h \
     idocument.h \
     iabstractfactory.h \
-<<<<<<< HEAD
     iprototype.h \
     icompressionalgorithm.h
-=======
-    iprototype.h
->>>>>>> 6a42dc52edd8a45e028e1e0e99f251bd0576c65b
 
 unix {
     target.path = /usr/lib

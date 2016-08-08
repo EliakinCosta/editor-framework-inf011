@@ -19,6 +19,7 @@ public:
     virtual QMenu* addMenu(const QString& title, const QString& parentMenuName) = 0;
     virtual bool addAction(const QString& menuName, const QString& text, const QObject* receiver, const char* member, const QKeySequence& shortcut = QKeySequence()) = 0;
     virtual void setEditor(const IEditor *editor) = 0;
-};
+    virtual void populateMenus(QObject *plugin, QMenu *menu) = 0;
+} ;
 
 #endif // IUICONTROLLER_H

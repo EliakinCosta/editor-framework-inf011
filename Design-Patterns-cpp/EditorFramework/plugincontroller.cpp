@@ -2,6 +2,7 @@
 #include <../EditorFrameworkInterfaces/iplugin.h>
 #include <../EditorFrameworkInterfaces/iabstractfactory.h>
 #include <../EditorFrameworkInterfaces/icore.h>
+#include <../EditorFrameworkInterfaces/iuicontroller.h>
 #include <QDir>
 #include <QPluginLoader>
 #include <QApplication>
@@ -10,7 +11,7 @@
 PluginController::PluginController(ICore* core):m_loadedPlugins(new QList<IPlugin*>),
                                      m_core(core)
 {
-
+    loadPlugins();
 }
 
 PluginController::~PluginController()
@@ -23,8 +24,8 @@ bool PluginController::loadPlugins()
 {
     bool flagLoadSucess = true;
     QDir pluginsDir = QDir(qApp->applicationDirPath());
-    pluginsDir.cdUp();
     #if defined(Q_OS_WIN)
+        qDebug() << pluginsDir.dirName().toLower();
         if (pluginsDir.dirName().toLower() == "debug" || pluginsDir.dirName().toLower() == "release")
             pluginsDir.cdUp();
     #elif defined(Q_OS_MAC)
@@ -34,6 +35,7 @@ bool PluginController::loadPlugins()
             pluginsDir.cdUp();
         }
     #endif
+    pluginsDir.cdUp();
     pluginsDir.cd("plugins/");
     qDebug() << "diretorio plugins: " << pluginsDir.path();
     IPlugin* plugin = 0;
@@ -59,6 +61,10 @@ QList<IPlugin*>* PluginController::loadedPlugins() const{
     return m_loadedPlugins;
 }
 
+void PluginController::clear()
+{
+    m_loadedPlugins->clear();
+}
 
 
 

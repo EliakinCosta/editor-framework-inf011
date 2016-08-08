@@ -56,8 +56,7 @@ bool ImageDocument::compress()
     {
         m_imageByteArray = m_compressionAlgorithm->compress(m_imageByteArray);
 
-        qDebug() << m_fileName.replace(m_fileExtension, "zip");
-        QFile compressedFile(m_fileName.replace(m_fileExtension, "zip"));
+        QFile compressedFile(m_fileName);
         compressedFile.open(QIODevice::WriteOnly);
         compressedFile.write(m_imageByteArray);
         compressedFile.close();

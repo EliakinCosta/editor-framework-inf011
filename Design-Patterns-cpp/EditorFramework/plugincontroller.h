@@ -15,6 +15,7 @@ public:
     virtual ~PluginController();
     virtual bool loadPlugins();
     virtual QList<IPlugin*>* loadedPlugins() const;
+    virtual void clear();
 private:
     QList<IPlugin*>* m_loadedPlugins;
     ICore* m_core;

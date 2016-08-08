@@ -10,6 +10,8 @@ class DocumentController:public IDocumentController
 public:
     DocumentController();
     virtual ~DocumentController(){}
+    virtual void setActiveDocument(IDocument *document);
+    virtual IDocument *activeDocument();
 };
 
 #endif // DOCUMENTCONTROLLER_H

@@ -16,14 +16,12 @@ DESTDIR = ../plugins
 
 SOURCES += imagefactory.cpp \
     imageeditor.cpp \
-    imagedocument.cpp \
-    toolbarprototype.cpp
+    imagedocument.cpp
 
 HEADERS += imagefactory.h \
     imageeditor.h \
     imagedocument.h \
-    imagefactory_global.h \
-    toolbarprototype.h
+    imagefactory_global.h
 DISTFILES += ImageFactory.json
 
 unix {

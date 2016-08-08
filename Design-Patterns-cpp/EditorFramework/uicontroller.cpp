@@ -48,6 +48,10 @@ void UiController::initialize()
 {
     addMenu(tr("&File"), tr("&File"));
     addAction(tr("&File"), tr("&Open"), this, SLOT(actionOpen()),QKeySequence(Qt::CTRL + Qt::Key_O));
+    addMenu(tr("&Plugins"), tr("&Plugins"));
+    addMenu(tr("&Compression Plugins"), tr("&Plugins"));
+
+    m_compressionAlgorithmGroup = new QActionGroup(m_mainWindow);
 }
 
 
@@ -72,13 +76,15 @@ void UiController::actionOpen(){
         QString fileExtension = "*."+selectedFile.split(".").at(1);
         qDebug()<<"extensao: "<<fileExtension;
         IPluginController* pluginController = m_core->pluginController();
+        pluginController->clear();
         pluginController->loadPlugins();
-
+        clearMenu(m_mainWindow->ui->menuBar->findChildren<QMenu*>(tr("&Compression Plugins")).first());
         IEditor *editorPrototype = 0;
         IDocument *documentPrototype = 0;
 
         foreach(IPlugin *plugin, *pluginController->loadedPlugins())
         {
+            populateMenus(plugin, m_mainWindow->ui->menuBar->findChildren<QMenu *>("&Compression Plugins").first());
             IAbstractFactory* factory = dynamic_cast<IAbstractFactory*>(plugin);
             if(factory)
             {
@@ -87,15 +93,11 @@ void UiController::actionOpen(){
                 documentPrototype = dynamic_cast<IDocument*>(factory->create(QString("Document")));
                 qDebug()<<"antes do cast";
                 qDebug()<<editorPrototype;
-            }
-            ICompressionAlgorithm *compressAlgorithm = dynamic_cast<ICompressionAlgorithm*>(plugin);
-            if(compressAlgorithm && documentPrototype)
-            {
-                documentPrototype->setCompressionAlgorithm(compressAlgorithm);
+                m_core->documentController()->setActiveDocument(documentPrototype);
                 documentPrototype->open(selectedFile);
-                documentPrototype->compress();
                 editorPrototype->setDocument(documentPrototype);
                 setEditor(editorPrototype);
+                break;
             }
         }
     }
@@ -105,4 +107,45 @@ void UiController::setEditor(const IEditor *editor)
 {
     QWidget *view = editor->view();
     m_mainWindow->setCentralWidget(view);
+}
+
+void UiController::populateMenus(QObject *plugin, QMenu *menu)
+{
+    ICompressionAlgorithm *icompresionAlgorithm = qobject_cast<ICompressionAlgorithm *>(plugin);
+    if (icompresionAlgorithm)
+        addPluginToMenu(plugin,
+                  menu,
+                  SLOT(changeCompressionAlgorithm()),
+                  m_compressionAlgorithmGroup);
+}
+
+void UiController::addPluginToMenu(QObject *plugin,
+                           QMenu *menu, const char *member,
+                           QActionGroup *actionGroup)
+{
+    QAction *action = new QAction(plugin->metaObject()->className(), plugin);
+
+    connect(action, SIGNAL(triggered()), this, member);
+    menu->addAction(action);
+
+    if (actionGroup) {
+        action->setCheckable(true);
+        actionGroup->addAction(action);
+    }
+}
+
+void UiController::changeCompressionAlgorithm()
+{
+    qDebug() << "Ativo";
+    QAction *action = qobject_cast<QAction *>(sender());
+    ICompressionAlgorithm *iCompressionAlgorithm = qobject_cast<ICompressionAlgorithm *>(action->parent());
+
+    m_core->documentController()->activeDocument()->setCompressionAlgorithm(iCompressionAlgorithm);
+    m_core->documentController()->activeDocument()->compress();
+}
+
+
+void UiController::clearMenu(QMenu *menu)
+{
+    menu->clear();
 }

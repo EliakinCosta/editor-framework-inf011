@@ -15,6 +15,7 @@ public:
     virtual ~IPluginController(){}
     virtual bool loadPlugins() = 0;
     virtual QList<IPlugin*>* loadedPlugins() const = 0;
+    virtual void clear() = 0;
 };
 
 #endif // IPLUGINCONTROLLER_H
