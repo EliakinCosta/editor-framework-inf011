@@ -28,6 +28,8 @@ private:
     QActionGroup *m_compressionAlgorithmGroup;
 private Q_SLOTS:
     void actionOpen();
+    void actionCompress();
+    void actionUncompress();
     void changeCompressionAlgorithm();
 };
 

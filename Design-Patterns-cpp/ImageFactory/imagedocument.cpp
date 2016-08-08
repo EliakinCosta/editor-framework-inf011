@@ -68,7 +68,12 @@ bool ImageDocument::uncompress()
 {
     if(m_compressionAlgorithm)
     {
+        m_imageByteArray = m_compressionAlgorithm->umcompress(m_imageByteArray);
 
+        QFile uncompressedFile(m_fileName);
+        uncompressedFile.open(QIODevice::WriteOnly);
+        uncompressedFile.write(m_imageByteArray);
+        uncompressedFile.close();
         return true;
     }
     return false;

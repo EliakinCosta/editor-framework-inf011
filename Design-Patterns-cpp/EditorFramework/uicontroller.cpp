@@ -48,6 +48,9 @@ void UiController::initialize()
 {
     addMenu(tr("&File"), tr("&File"));
     addAction(tr("&File"), tr("&Open"), this, SLOT(actionOpen()),QKeySequence(Qt::CTRL + Qt::Key_O));
+    addMenu(tr("&Save Settins"), tr("&File"));
+    addAction(tr("&Save Settins"), tr("&Compress"), this, SLOT(actionCompress()),QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_C));
+    addAction(tr("&Save Settins"), tr("&Uncompress"), this, SLOT(actionUncompress()),QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_U));
     addMenu(tr("&Plugins"), tr("&Plugins"));
     addMenu(tr("&Compression Plugins"), tr("&Plugins"));
 
@@ -103,6 +106,16 @@ void UiController::actionOpen(){
     }
 }
 
+void UiController::actionCompress()
+{
+    m_core->documentController()->activeDocument()->compress();
+}
+
+void UiController::actionUncompress()
+{
+    m_core->documentController()->activeDocument()->uncompress();
+}
+
 void UiController::setEditor(const IEditor *editor)
 {
     QWidget *view = editor->view();
@@ -141,7 +154,6 @@ void UiController::changeCompressionAlgorithm()
     ICompressionAlgorithm *iCompressionAlgorithm = qobject_cast<ICompressionAlgorithm *>(action->parent());
 
     m_core->documentController()->activeDocument()->setCompressionAlgorithm(iCompressionAlgorithm);
-    m_core->documentController()->activeDocument()->compress();
 }
 
 
