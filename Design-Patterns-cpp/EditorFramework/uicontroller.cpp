@@ -100,7 +100,6 @@ void UiController::actionOpen(){
                 documentPrototype->open(selectedFile);
                 editorPrototype->setDocument(documentPrototype);
                 setEditor(editorPrototype);
-                break;
             }
         }
     }
@@ -125,6 +124,7 @@ void UiController::setEditor(const IEditor *editor)
 void UiController::populateMenus(QObject *plugin, QMenu *menu)
 {
     ICompressionAlgorithm *icompresionAlgorithm = qobject_cast<ICompressionAlgorithm *>(plugin);
+    qDebug() << icompresionAlgorithm;
     if (icompresionAlgorithm)
         addPluginToMenu(plugin,
                   menu,

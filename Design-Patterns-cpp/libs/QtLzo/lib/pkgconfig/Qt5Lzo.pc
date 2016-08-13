@@ -1,0 +1,14 @@
+prefix=C:/Qt/5.7/mingw53_32
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+
+Name: Qt5 Lzo
+Description: Qt Lzo module
+Version: 5.5.0
+Libs: -L${libdir} -lQt5Lzod 
+Libs.private: -LC:\utils\postgresql\pgsql\lib -LC:\utils\my_sql\my_sql\lib -llzo2d -LC:\Qt\5.7\mingw53_32\lib C:\Qt\5.7\mingw53_32\lib\libQt5Scriptd.a C:\Qt\5.7\mingw53_32\lib\libQt5Cored.a .obj\debug\Qt5Lzod_resource_res.o   
+Cflags: -I${includedir}/QtLzo -I${includedir}
+Requires: Qt5Core Qt5Script
+

@@ -1,0 +1,11 @@
+QT.QtLzo_private.VERSION = 5.5.0
+QT.QtLzo_private.MAJOR_VERSION = 5
+QT.QtLzo_private.MINOR_VERSION = 5
+QT.QtLzo_private.PATCH_VERSION = 0
+QT.QtLzo_private.name = QtLzo
+QT.QtLzo_private.module =
+QT.QtLzo_private.libs = $$QT_MODULE_LIB_BASE
+QT.QtLzo_private.includes = $$QT_MODULE_INCLUDE_BASE/QtLzo/5.5.0 $$QT_MODULE_INCLUDE_BASE/QtLzo/5.5.0/QtLzo
+QT.QtLzo_private.frameworks =
+QT.QtLzo_private.depends = QtLzo
+QT.QtLzo_private.module_config = v2 internal_module

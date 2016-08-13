@@ -28,10 +28,3 @@ unix {
     target.path = /usr/lib
     INSTALLS += target
 }
-
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../build-EditorFrameworkInterfaces-Desktop-Debug/release/ -lEditorFrameworkInterfaces
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../build-EditorFrameworkInterfaces-Desktop-Debug/debug/ -lEditorFrameworkInterfaces
-else:unix: LIBS += -L$$PWD/../build-EditorFrameworkInterfaces-Desktop-Debug/ -lEditorFrameworkInterfaces
-
-INCLUDEPATH += $$PWD/../build-EditorFrameworkInterfaces-Desktop-Debug/debug
-DEPENDPATH += $$PWD/../build-EditorFrameworkInterfaces-Desktop-Debug/debug

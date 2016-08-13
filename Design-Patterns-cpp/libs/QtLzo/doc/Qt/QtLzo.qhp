@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+    <namespace>com.neutrino.qtlzo.1.6.0</namespace>
+    <virtualFolder>doc</virtualFolder>
+    <customFilter name="Qt LZO 1.6.0">
+        <filterAttribute>QtLzo</filterAttribute>
+        <filterAttribute>1.6.0</filterAttribute>
+    </customFilter>
+    <filterSection>
+        <filterAttribute>QtLzo</filterAttribute>
+        <filterAttribute>1.6.0</filterAttribute>
+        <toc>
+            <section title="Qt LZO Manual" ref="index.html">
+                <section title="English" ref="en/index.html"/>
+                <section title="Traditional Chinese" ref="tw/index.html"/>
+                <section title="Simplified Chinese" ref="cn/index.html"/>
+            </section>
+        </toc>
+        <keywords>
+            <keyword name="QtLzo" id="QtLzo::QtLzo" ref="index.html#QtLzo"/>
+            <keyword id="QtLzo::QtLzo" ref="index.html#QtLzo"/>
+        </keywords>
+        <files>
+            <file>*.css</file>
+            <file>*.html</file>
+            <file>en/*.html</file>
+            <file>cn/*.html</file>
+            <file>tw/*.html</file>
+        </files>
+    </filterSection>
+</QtHelpProject>

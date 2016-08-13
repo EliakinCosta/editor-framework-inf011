@@ -1,0 +1,13 @@
+INPUT(
+./release\icore.o
+./release\iuicontroller.o
+./release\iplugincontroller.o
+./release\iplugin.o
+./release\idocumentcontroller.o
+./release\ieditor.o
+./release\idocument.o
+./release\iabstractfactory.o
+./release\iprototype.o
+./release\icompressionalgorithm.o
+./release\moc_iuicontroller.o
+);

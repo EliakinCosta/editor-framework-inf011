@@ -47,6 +47,7 @@ bool PluginController::loadPlugins()
            qDebug() << pluginFileName;
            if (plugin)
            {
+               qDebug() << plugin;
                plugin->initialize(m_core);
                m_loadedPlugins->append(plugin);
            }
