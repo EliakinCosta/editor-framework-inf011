@@ -6,6 +6,7 @@
 
 QT       -= gui
 QT += script
+QT += QtLzo
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = LZOCompressionAlgorithm
@@ -33,9 +34,3 @@ else:unix: LIBS += -L$$PWD/../build-EditorFrameworkInterfaces-Desktop_Qt_5_7_0_M
 INCLUDEPATH += $$PWD/../build-EditorFrameworkInterfaces-Desktop_Qt_5_7_0_MinGW_32bit-Debug/debug
 DEPENDPATH += $$PWD/../build-EditorFrameworkInterfaces-Desktop_Qt_5_7_0_MinGW_32bit-Debug/debug
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../plugins/ -lQt5Lzo
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../plugins/ -lQt5Lzod
-else:unix: LIBS += -L$$PWD/../plugins/ -lQt5Lzo
-
-INCLUDEPATH += $$PWD/../plugins
-DEPENDPATH += $$PWD/../plugins

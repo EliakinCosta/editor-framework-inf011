@@ -207,6 +207,7 @@ Makefile: ../LZOCompressionAlgorithm/LZOCompressionAlgorithm.pro C:/Qt/5.7/mingw
 		C:/Qt/5.7/mingw53_32/mkspecs/features/yacc.prf \
 		C:/Qt/5.7/mingw53_32/mkspecs/features/lex.prf \
 		../LZOCompressionAlgorithm/LZOCompressionAlgorithm.pro \
+		C:/Qt/5.7/mingw53_32/lib/Qt5Lzo.prl \
 		C:/Qt/5.7/mingw53_32/lib/Qt5Script.prl \
 		C:/Qt/5.7/mingw53_32/lib/Qt5Widgets.prl \
 		C:/Qt/5.7/mingw53_32/lib/Qt5Gui.prl \
@@ -360,6 +361,7 @@ C:/Qt/5.7/mingw53_32/mkspecs/features/exceptions.prf:
 C:/Qt/5.7/mingw53_32/mkspecs/features/yacc.prf:
 C:/Qt/5.7/mingw53_32/mkspecs/features/lex.prf:
 ../LZOCompressionAlgorithm/LZOCompressionAlgorithm.pro:
+C:/Qt/5.7/mingw53_32/lib/Qt5Lzo.prl:
 C:/Qt/5.7/mingw53_32/lib/Qt5Script.prl:
 C:/Qt/5.7/mingw53_32/lib/Qt5Widgets.prl:
 C:/Qt/5.7/mingw53_32/lib/Qt5Gui.prl:
