@@ -16,11 +16,14 @@
 #include <QMessageBox>
 #include "ui_mainwindow.h"
 #include <QTextEdit>
+#include <QTabWidget>
 
 UiController::UiController(ICore* core):m_mainWindow(new MainWindow),
-                                                         m_core(core)
+                                                         m_core(core),
+                                                         m_tabs(new QTabWidget())
 {
     m_mainWindow->show();
+    m_mainWindow->setCentralWidget(m_tabs);
     initialize();
 }
 
@@ -118,7 +121,7 @@ void UiController::actionUncompress()
 void UiController::setEditor(const IEditor *editor)
 {
     QWidget *view = editor->view();
-    m_mainWindow->setCentralWidget(view);
+    m_tabs->addTab(view, tr("&Tab"));
 }
 
 void UiController::populateMenus(QObject *plugin, QMenu *menu)
