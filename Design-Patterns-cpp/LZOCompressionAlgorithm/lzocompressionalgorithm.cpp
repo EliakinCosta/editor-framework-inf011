@@ -1,4 +1,5 @@
 #include "lzocompressionalgorithm.h"
+#include <LZO/qtlzo.h>
 
 LZOCompressionAlgorithm::LZOCompressionAlgorithm(QObject *parent):IPlugin(parent)
 {
@@ -7,18 +8,19 @@ LZOCompressionAlgorithm::LZOCompressionAlgorithm(QObject *parent):IPlugin(parent
 
 LZOCompressionAlgorithm::~LZOCompressionAlgorithm()
 {
-    delete m_lzoData;
-    delete m_sourceData;
 }
 
 
 QByteArray LZOCompressionAlgorithm::compress(const QByteArray &data) const
 {
-    QByteArray t;
-    return *m_lzoData;
+    QByteArray image;
+    ToLZO(data, image);
+    return image;
 }
 
 QByteArray LZOCompressionAlgorithm::umcompress(const QByteArray &data) const
 {
-    return *m_sourceData;
+    QByteArray image;
+    FromLZO(data, image);
+    return image;
 }

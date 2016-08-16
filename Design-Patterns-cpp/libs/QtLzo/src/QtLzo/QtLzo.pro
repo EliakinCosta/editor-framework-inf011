@@ -15,32 +15,10 @@ SOURCES     += $${PWD}/ScriptableLzo.cpp
 
 include ($${PWD}/../../doc/Qt/Qt.pri)
 
-win32 {
-
-CONFIG(debug, debug|release) {
-LIBS        += -llzo2d
-} else {
-LIBS        += -llzo2
-}
-
-}
-
-macx {
-
-CONFIG(debug, debug|release) {
-LIBS        += -lliblzo2d
-} else {
-LIBS        += -lliblzo2
-}
-
-}
-
 unix {
 
 CONFIG(debug, debug|release) {
-LIBS        += -lliblzo2d
-} else {
-LIBS        += -lliblzo2
+    LIBS += -L"$$_PRO_FILE_PWD_/libs/" -lliblzo2
 }
 
 }

@@ -5,8 +5,7 @@ HEADERS     += $${PWD}/qtlzo.h
 SOURCES     += $${PWD}/qtlzo.cpp
 SOURCES     += $${PWD}/ScriptableLzo.cpp
 
-CONFIG(debug, debug|release) {
-LIBS        += -llzo2d
-} else {
-LIBS        += -llzo2
-}
+unix: LIBS += -L$$PWD/lib/ -llzo2
+
+INCLUDEPATH += $$PWD/include
+DEPENDPATH += $$PWD/include

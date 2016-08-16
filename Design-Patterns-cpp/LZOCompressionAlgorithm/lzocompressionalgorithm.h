@@ -4,7 +4,6 @@
 #include "lzocompressionalgorithm_global.h"
 #include <../EditorFrameworkInterfaces/iplugin.h>
 #include <../EditorFrameworkInterfaces/icompressionalgorithm.h>
-#include <QtLzo>
 
 class QByteArray;
 class QObject;
@@ -21,10 +20,6 @@ public:
     virtual QByteArray compress(const QByteArray &data) const;
     virtual QByteArray umcompress(const QByteArray &data) const;
     virtual bool initialize(ICore *core){}
-private:
-    QByteArray *m_lzoData;
-    QByteArray *m_sourceData;
-    QtLzo teste;
 };
 
 

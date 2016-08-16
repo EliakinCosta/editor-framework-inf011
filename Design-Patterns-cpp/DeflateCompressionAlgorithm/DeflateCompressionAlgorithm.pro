@@ -28,9 +28,9 @@ unix {
     INSTALLS += target
 }
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../build-EditorFrameworkInterfaces-Desktop_Qt_5_7_0_MinGW_32bit-Debug/release/ -lEditorFrameworkInterfaces
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../build-EditorFrameworkInterfaces-Desktop_Qt_5_7_0_MinGW_32bit-Debug/debug/ -lEditorFrameworkInterfaces
-else:unix: LIBS += -L$$PWD/../build-EditorFrameworkInterfaces-Desktop_Qt_5_7_0_MinGW_32bit-Debug/ -lEditorFrameworkInterfaces
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../build-EditorFrameworkInterfaces-Desktop-Debug/release/ -lEditorFrameworkInterfaces
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../build-EditorFrameworkInterfaces-Desktop-Debug/debug/ -lEditorFrameworkInterfaces
+else:unix: LIBS += -L$$PWD/../build-EditorFrameworkInterfaces-Desktop-Debug/ -lEditorFrameworkInterfaces
 
-INCLUDEPATH += $$PWD/../build-EditorFrameworkInterfaces-Desktop_Qt_5_7_0_MinGW_32bit-Debug/debug
-DEPENDPATH += $$PWD/../build-EditorFrameworkInterfaces-Desktop_Qt_5_7_0_MinGW_32bit-Debug/debug
+INCLUDEPATH += $$PWD/../build-EditorFrameworkInterfaces-Desktop-Debug
+DEPENDPATH += $$PWD/../build-EditorFrameworkInterfaces-Desktop-Debug
