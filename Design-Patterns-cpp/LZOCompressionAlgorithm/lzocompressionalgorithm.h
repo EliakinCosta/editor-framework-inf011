@@ -4,6 +4,7 @@
 #include "lzocompressionalgorithm_global.h"
 #include <../EditorFrameworkInterfaces/iplugin.h>
 #include <../EditorFrameworkInterfaces/icompressionalgorithm.h>
+#include <LZO/qtlzo.h>
 
 class QByteArray;
 class QObject;

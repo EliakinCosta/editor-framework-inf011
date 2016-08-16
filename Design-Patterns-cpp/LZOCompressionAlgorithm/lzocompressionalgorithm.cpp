@@ -1,5 +1,6 @@
 #include "lzocompressionalgorithm.h"
 #include <LZO/qtlzo.h>
+#include <QByteArray>
 
 LZOCompressionAlgorithm::LZOCompressionAlgorithm(QObject *parent):IPlugin(parent)
 {
