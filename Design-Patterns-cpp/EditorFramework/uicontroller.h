@@ -25,14 +25,15 @@ private:
     void addPluginToMenu(QObject *plugin, QMenu *menu, const char *member, QActionGroup *actionGroup);
     void clearMenu(QMenu *menu);
     MainWindow* m_mainWindow;
-    QTabWidget *m_tabs;
     ICore* m_core;
+    QTabWidget *m_tabs;
     QActionGroup *m_compressionAlgorithmGroup;
 private Q_SLOTS:
     void actionOpen();
     void actionCompress();
     void actionUncompress();
     void changeCompressionAlgorithm();
+    void closeTab_(int index);
 };
 
 #endif // UICONTROLLER_H

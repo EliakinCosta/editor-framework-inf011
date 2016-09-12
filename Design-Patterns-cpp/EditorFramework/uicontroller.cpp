@@ -23,6 +23,7 @@ UiController::UiController(ICore* core):m_mainWindow(new MainWindow),
                                                          m_tabs(new QTabWidget())
 {
     m_mainWindow->show();
+    m_tabs->setTabsClosable(true);
     m_mainWindow->setCentralWidget(m_tabs);
     initialize();
 }
@@ -58,6 +59,8 @@ void UiController::initialize()
     addMenu(tr("&Compression Plugins"), tr("&Plugins"));
 
     m_compressionAlgorithmGroup = new QActionGroup(m_mainWindow);
+
+    connect(m_tabs, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab_(int)));
 }
 
 
@@ -163,4 +166,12 @@ void UiController::changeCompressionAlgorithm()
 void UiController::clearMenu(QMenu *menu)
 {
     menu->clear();
+}
+
+void UiController::closeTab_(int index)
+{
+    qDebug() << "ativo" << index;
+    m_tabs->removeTab(index);
+
+    delete m_tabs->widget(index);
 }
