@@ -172,6 +172,4 @@ void UiController::closeTab_(int index)
 {
     qDebug() << "ativo" << index;
     m_tabs->removeTab(index);
-
-    delete m_tabs->widget(index);
 }

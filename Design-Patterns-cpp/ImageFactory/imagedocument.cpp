@@ -14,6 +14,9 @@ ImageDocument::ImageDocument():m_image(new QPixmap)
 ImageDocument::ImageDocument(ImageDocument &prototype):m_image(new QPixmap)
 {
     this->m_image = prototype.m_image;
+    this->m_fileName =  prototype.m_fileName;
+    this->m_imageByteArray = prototype.m_imageByteArray;
+    this->m_fileExtension = prototype.m_fileExtension;
 }
 
 ImageDocument::~ImageDocument()
